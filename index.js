@@ -33,7 +33,11 @@ app.get("/api/v1/pets/owner", (req, res) => {
   const pet = pets.find((pet) => pet.owner === owner);
 
   // send the pet as a response
-  pet ? res.send(pet) : res.status(404).send("Pet not found.");
+  if (pet) {
+    res.send(pet);
+  } else {
+    res.status(404).send("Pet not found.");
+  }
 });
 
 // get pet by name
@@ -45,7 +49,11 @@ app.get("/api/v1/pets/:name", (req, res) => {
   const pet = pets.find((pet) => pet.name === name);
 
   // send the pet as a response
-  pet ? res.send(pet) : res.status(404).send("Pet not found.");
+  if (pet) {
+    res.send(pet);
+  } else {
+    res.status(404).send("Pet not found.");
+  }
 });
 
 app.listen(PORT, () => {
